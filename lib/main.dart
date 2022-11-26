@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ihealth/data.dart';
 import 'package:ihealth/screens/intro_screens.dart';
 import 'package:ihealth/screens/onBoard_screen.dart';
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,9 +33,18 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
-        "/onBoard": (context) => const OnBoard()
+        "/onBoard": (context) => const OnBoardingScreen()
 
-      },
+     },
     );
   }
 }
+
+
+
+
+
+
+
+
+

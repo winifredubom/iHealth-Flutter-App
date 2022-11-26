@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
           (value) => Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const OnBoard(),
+          pageBuilder: (context, animation, secondaryAnimation) => const OnBoardingScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity: animation.drive(Tween(begin: 0, end: 1)),
