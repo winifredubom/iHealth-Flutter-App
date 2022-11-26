@@ -102,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen>
                           width: w*9,
                           decoration:  const BoxDecoration(
                               image: DecorationImage(image: AssetImage(
-                                "images/telephone.png",
+                                "images/pharmacy.png",
                               ),)
                           ),
                         ),

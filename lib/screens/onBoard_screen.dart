@@ -1,33 +1,60 @@
 import 'package:flutter/cupertino.dart';
-import 'package:introduction_screen/introduction_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ihealth/data.dart';
 
-class OnBoard extends StatelessWidget {
+class OnBoard extends StatefulWidget {
   const OnBoard({Key? key}) : super(key: key);
 
   @override
+  State<OnBoard> createState() => _OnBoardState();
+}
+
+class _OnBoardState extends State<OnBoard> {
+  CarouselController _carouselController = CarouselController();
+  int currentSlider = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(child: IntroductionScreen(
-        pages: [
-          PageViewModel(
-            title:'Find Pharmacy near you',
-            body: 'it\'s easy to find pharmacy that is near to your location',
-            image: Image.asset('images/find_a_pharmacy_near_you.jpg'),
-          ),
-          PageViewModel(
-            title:'Search with our database',
-            body: 'Find the nearest pharmacy close to you',
-            image: Image.asset('images/pharmacy_finder.jpg') ,
-          ),
-          PageViewModel(
-            title:'Get delivery to your Doorstep',
-            body: 'Get your drugs delivered to your doorstep' ,
-            image: Image.asset('images/medicine_delivery.png'),
-          ),
+    return Scaffold(
+      body: SafeArea(
+        bottom: false,
+        child: Stack(
+          children: [
+            CarouselSlider(
+                carouselController: _carouselController,
+                items: data.map((e) {
+                  return Image.asset(e ['image'], width: double.infinity, fit: BoxFit.contain);}).toList(),
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height,
+                  viewportFraction: 1,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  initialPage: 0,
+                  onPageChanged: (index, _){
+                    setState(() {
+                      currentSlider = index;
+                    });
+                  }
 
-        ], //onDone: onDone, done: done
-     ));
+                )),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: EdgeInsets.all(30),
+                width: double.infinity,
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(40))
+                ),
+              ),
+            )
+          ],
+        ),
 
-
+      ),
+    );
   }
 }
 
